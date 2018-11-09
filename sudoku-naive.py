@@ -2,19 +2,30 @@
 import sys
 
 ##############Opening Files#####################
-#inputfile = open(sys.argv[2],'r')
-#outputfile = open(sys.argv[3],'w+')
-#name = open(sys.argv[4])
-inputfile = open("Sudoku-boards.txt",'r')
-outputfile = open("Sudoku-sols.txt",'w+')
-name = "name,Medium-NYTimes,unsolved"
+inputfile = open(sys.argv[1],'r')
+outputfile = open(sys.argv[2],'w+')
+name = sys.argv[3]
+#inputfile = open("Sudoku-boards.txt",'r')
+#outputfile = open("Sudoku-sols.txt",'w+')
+#name = "name,Medium-NYTimes,unsolved"
 
 stuff = inputfile.read()
 if stuff:
-    inlines = stuff.strip().split('name')
+    inlines = stuff.strip().split("\n")
 else: inlines = []
 
-print(inlines);     
+boards = []
+for i in inlines:
+    cur = boards
+    if i == "":
+        continue
+    if i[0:4]=="name":
+        cur = list(i)
+        cur.append(new)
+    cur.append(i)
+    cur = boards
+
+print(inlines)
 Cliques=[[0,1,2,3,4,5,6,7,8],\
 [9,10,11,12,13,14,15,16,17],\
 [18,19,20,21,22,23,24,25,26],\
