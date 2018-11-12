@@ -10,22 +10,29 @@ name = sys.argv[3]
 #name = "name,Medium-NYTimes,unsolved"
 
 stuff = inputfile.read()
-if stuff:
-    inlines = stuff.strip().split("\n")
-else: inlines = []
+board = []
+if not stuff:
+    print("Error: your input file has nothing in it!")
+else:
+    things = stuff.strip().split("\n")
+    found = False
+    c1 = 0
+    length = len(things)
+    while c1 < length:
+        if len(things[c1])>0 and things[c1][0:4] == "name":
+            if things[c1] == name:
+                found = True
+                counter = 1
+                while counter < 10:
+                    temp = things[c1+counter].split(",")
+                    board += temp
+                    counter+=1
+        c1+=1
+    if not found:
+        print("Error: your requested board was not found inside of the input file.")
+    
+print(board)
 
-boards = []
-for i in inlines:
-    cur = boards
-    if i == "":
-        continue
-    if i[0:4]=="name":
-        cur = list(i)
-        cur.append(new)
-    cur.append(i)
-    cur = boards
-
-print(inlines)
 Cliques=[[0,1,2,3,4,5,6,7,8],\
 [9,10,11,12,13,14,15,16,17],\
 [18,19,20,21,22,23,24,25,26],\
