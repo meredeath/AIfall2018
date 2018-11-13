@@ -107,4 +107,25 @@ def print_board(b):
     for i in l:
         print(i)
         print()
-print_board(board)
+
+name = name.split(",")
+name[2] = "solved"
+name = ",".join(name)
+outputfile.write(name + "\n")
+l = []
+c5 = 0
+temp = []
+while c5 < 81:
+    if (c5+1) %9 != 0:
+        temp.append(board[c5])
+    else:
+        temp.append(board[c5])
+        l.append(temp)
+        temp = []
+    c5 += 1
+for i in l:
+    str = []
+    for j in i:
+        str.append(j)
+    str = ",".join(str)
+    outputfile.write(str + "\n")
