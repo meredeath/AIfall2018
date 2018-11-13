@@ -69,30 +69,23 @@ while c2 < 81:
                 cliqdict[c2].append(i)
     c2 += 1
 
-    
+def can_move(index, cur, num):
+    for i in cliqdict[index]:
+        for k in i:
+            if cur[k] == str(num):
+                return False
+    return True
+
 def solve(index, cur):
     if index > 80:
-        print("No solution found")
-        return False
-    if cur[index] == "_":
-        c4 = 1
-        can = True
-        while c4 < 10:
-            for i in cliqdict[index]:
-                print("i in cliqdict[index]: ")
-                print(i)
-                for k in i:
-                    if cur[i] == str(c4):
-                        can = False
-            if can:
-                cur[index] = c4
-                break
-            c4 += 1
-c3 = 0
-while c3 < 81:
-    if board[c3] == "_":
-        orig = board
-        solve(c3, board)
-    c3 += 1
+        return True
+    if cur[index] != "_":
+        return solve(index+1,cur)
+    for i in range(1,10):
+        if can_move(index,cur,i):
+            cur[index]=str(i)
+            return solve(index+1,cur)
+    return False
 
+solve(0,board)
 print(board)
