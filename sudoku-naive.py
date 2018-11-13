@@ -78,6 +78,7 @@ def can_move(index, cur, num):
     return True
 
 def solve(index, cur):
+    #orig = copy.copy(cur)
     if index > 80:
         return True
     if cur[index] != "_":
@@ -87,7 +88,7 @@ def solve(index, cur):
             cur[index]=str(i)
             if solve(index+1,cur):
                 return True
-            else: cur[index+1] = "_"
+            else: cur[index] = "_"
     return False
 
 solve(0,board)
