@@ -1,5 +1,6 @@
 #! /usr/bin/python3
 import sys
+import copy
 
 ##############Opening Files#####################
 inputfile = open(sys.argv[1],'r')
@@ -84,8 +85,26 @@ def solve(index, cur):
     for i in range(1,10):
         if can_move(index,cur,i):
             cur[index]=str(i)
-            return solve(index+1,cur)
+            if solve(index+1,cur):
+                return True
+            else: cur[index+1] = "_"
     return False
 
 solve(0,board)
-print(board)
+
+def print_board(b):
+    l = []
+    c5 = 0
+    temp = []
+    while c5 < 81:
+        if (c5+1) %9 != 0:
+            temp.append(b[c5])
+        else:
+            temp.append(b[c5])
+            l.append(temp)
+            temp = []
+        c5 += 1
+    for i in l:
+        print(i)
+        print()
+print_board(board)
