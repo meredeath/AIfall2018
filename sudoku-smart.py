@@ -77,17 +77,16 @@ def can_move(index, cur, num):
                 return False
     return True
 
-def solve(index, cur):
+def solve(index, cur, backtracks):
     #orig = copy.copy(cur)
-    backtracks = 0
     if index > 80:
         return True
     if cur[index] != "_":
-        return solve(index+1,cur)
+        return solve(index+1,cur,backtracks)
     for i in range(1,10):
         if can_move(index,cur,i):
             cur[index]=str(i)
-            if solve(index+1,cur):
+            if solve(index+1,cur,backtracks):
                 return True
             else: 
               cur[index] = "_"
@@ -95,7 +94,7 @@ def solve(index, cur):
     print(backtracks)
     return False
 
-solve(0,board)
+solve(0,board,0)
 
 def print_board(b):
     l = []
